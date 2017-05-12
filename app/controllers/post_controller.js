@@ -1,77 +1,84 @@
-import PostModel from '../models/post_model';
+import Post from '../models/post_model';
+
+// this cleans the posts because we use id instead of dangling _id
+// and we purposefully don't return content here either
+const cleanPost = (post) => {
+  return { id: post._id, title: post.title, cover_url: post.cover_url, content: post.content, tags: post.tags.join(' ') };
+};
 
 const cleanPosts = (posts) => {
   return posts.map((post) => {
-    return { id: post._id, title: post.title, tags: post.tags, cover_url: post.cover_url };
+    return { id: post._id, title: post.title, cover_url: post.cover_url, content: post.content, tags: post.tags.join(' ') };
   });
 };
 
-
+// from http://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function compare(a, b) {
   if (a.createdAt < b.createdAt) { return 1; }
   if (a.createdAt > b.createdAt) { return -1; }
   return 0;
 }
 
-
-
 export const createPost = (req, res) => {
   // res.send('post should be created here');
-  const post = new PostModel();
+  const post = new Post();
   post.title = req.body.title;
-  post.tags = req.body.tags;
-  post.content = req.body.content;
   post.cover_url = req.body.cover_url;
+  post.content = req.body.content;
+  post.tags = req.body.tags.split(' ');
+
   post.save()
     .then((result) => {
-      res.json({ message: 'Post created!' });
+      res.json(
+        { message: 'Post created!' },
+      );
     })
     .catch((error) => {
       res.status(500).json({ error });
     });
 };
 
-
 export const getPosts = (req, res) => {
-  // res.send('posts should be returned\n');
-  PostModel.find({})
-  .then((returnedPosts) => {
-    console.log(returnedPosts);
-    returnedPosts.sort(compare);
-    res.json(cleanPosts(returnedPosts));
-  })
-  .catch((err) => {
-    res.json({ err });
-  });
+  // res.send('posts should be returned');
+  Post.find()
+    .then((posts) => {
+      posts.sort(compare);
+
+      res.json(cleanPosts(posts));
+    });
 };
 
 export const getPost = (req, res) => {
-  // res.send('single post looked up\n');
-  PostModel.findById(req.params.id)
-  .then((returnedPost) => {
-    res.json({ id: returnedPost._id, title: returnedPost.title, tags: returnedPost.tags, content: returnedPost.content, cover_url: returnedPost.cover_url });
-  })
-  .catch((err) => {
-    res.json({ err });
-  });
+  // res.send('single post looked up');
+  Post.findById(req.params.id)
+    .then((post) => {
+      res.json(cleanPost(post));
+    });
 };
 
 export const deletePost = (req, res) => {
-  PostModel.findOneAndRemove({ _id: req.params.id })
+  // res.send('delete a post here');
+  Post.remove({ _id: req.params.id })
     .then(() => {
-      res.json('Post Deleted Successfully');
-    })
-    .catch((err) => {
-      res.json({ err });
+      res.json(
+        { message: 'Post deleted!' },
+      );
     });
 };
 
 export const updatePost = (req, res) => {
-  PostModel.findOneAndUpdate({ _id: req.params.id }, { title: req.body.title, tags: req.body.tags, content: req.body.content, cover_url: req.body.cover_url })
-    .then(() => {
-      res.json('Post Updated Succesfully');
+  // res.send('update a post here');
+  Post.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      title: req.body.title,
+      cover_url: req.body.cover_url,
+      content: req.body.content,
+      tags: req.body.tags.split(' '),
     })
-    .catch((err) => {
-      res.json({ err });
+    .then(() => {
+      res.json(
+        { message: 'Post updated!' },
+      );
     });
 };
