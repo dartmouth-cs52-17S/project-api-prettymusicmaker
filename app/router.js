@@ -9,18 +9,13 @@ router.get('/', (req, res) => {
 });
 
 // /your routes will go here
-// example!
-// on routes that end in /posts
-// ----------------------------------------------------
-router.route('/posts')
+router.route('/posts/')
   .post(Posts.createPost)
   .get(Posts.getPosts);
 
-
 router.route('/posts/:id')
-  .get(Posts.getPost)
-  .put(Posts.updatePost)
-  .delete(Posts.deletePost);
-
+.put(Posts.updatePost)
+.get(Posts.getPost)
+.delete(Posts.deletePost);
 
 export default router;
