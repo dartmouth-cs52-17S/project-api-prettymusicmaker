@@ -10,6 +10,9 @@ const PostSchema = new Schema({
   toJSON: {
     virtuals: false,
   },
+  {
+    timestamps: true,
+  },
 });
 
 // create PostModel class from schema
