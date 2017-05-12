@@ -12,6 +12,8 @@ function compare(a, b) {
   return 0;
 }
 
+
+
 export const createPost = (req, res) => {
   // res.send('post should be created here');
   const post = new PostModel();
