@@ -6,6 +6,12 @@ const cleanPosts = (posts) => {
   });
 };
 
+function compare(a, b) {
+  if (a.createdAt < b.createdAt) { return 1; }
+  if (a.createdAt > b.createdAt) { return -1; }
+  return 0;
+}
+
 export const createPost = (req, res) => {
   // res.send('post should be created here');
   const post = new PostModel();
@@ -28,6 +34,7 @@ export const getPosts = (req, res) => {
   PostModel.find({})
   .then((returnedPosts) => {
     console.log(returnedPosts);
+    returnedPosts.sort(compare);
     res.json(cleanPosts(returnedPosts));
   })
   .catch((err) => {
