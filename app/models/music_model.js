@@ -2,8 +2,8 @@ import mongoose, { Schema } from 'mongoose';
 
 // mongoose.Promise = global.Promise;
 
-// create a PostSchema with a title field
-const PostSchema = new Schema(
+// create a musicSchema with a title field
+const MusicSchema = new Schema(
 
   {
     title: String,
@@ -17,7 +17,7 @@ const PostSchema = new Schema(
 
 );
 
-// create PostModel class from schema
-const PostModel = mongoose.model('Post', PostSchema);
+// create musicModel class from schema
+const MusicModel = mongoose.model('Music', MusicSchema);
 
-export default PostModel;
+export default MusicModel;
