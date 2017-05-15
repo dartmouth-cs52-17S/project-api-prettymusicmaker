@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 // mongoose.Promise = global.Promise;
 
-// create a PostSchema with a title field
+// create a musicSchema with a title field
 const MusicSchema = new Schema(
 
   {
@@ -17,7 +17,7 @@ const MusicSchema = new Schema(
 
 );
 
-// create PostModel class from schema
+// create musicModel class from schema
 const MusicModel = mongoose.model('Music', MusicSchema);
 
 export default MusicModel;
