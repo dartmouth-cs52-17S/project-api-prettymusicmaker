@@ -6,8 +6,8 @@ import bodyParser from 'body-parser';
 // at top of server.js
 import apiRouter from './router';
 
-// DB Setup
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/blog';
+// DB Setup Local DB is called music
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/music';
 mongoose.connect(mongoURI);
 // set mongoose promises to es6 default
 mongoose.Promise = global.Promise;
