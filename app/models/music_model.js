@@ -7,14 +7,10 @@ const MusicSchema = new Schema(
 
   {
     title: String,
-    cover_url: String,
-    content: String,
-    tags: [String],
+    author: String,
+    music: [[], []],
+    tempo: Number,
   },
-  {
-    timestamps: true,
-  },
-
 );
 
 // create musicModel class from schema
