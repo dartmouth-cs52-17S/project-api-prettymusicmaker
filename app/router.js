@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   res.json({ message: 'welcome to our pretty music maker api!' });
 });
 
-// TODO REQUITE AUTH NEEDS TO BE INTEGRATED
+// TODO REQUIRE AUTH NEEDS TO BE INTEGRATED
 
 // /your routes will go here
 router.route('/music/')

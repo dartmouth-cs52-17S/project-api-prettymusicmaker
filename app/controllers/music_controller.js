@@ -19,21 +19,23 @@ function compare(a, b) {
   return 0;
 }
 
+// save a music object to the db
 export const createMusic = (req, res) => {
-  // res.send('music should be created here');
   const music = new Music();
   music.title = req.body.title;
-  music.cover_url = req.body.cover_url;
-  music.content = req.body.content;
-  music.tags = req.body.tags.split(' ');
+  music.author = req.body.author;
+  music.music = req.body.music;
+  music.tempo = req.body.tempo;
 
   music.save()
     .then((result) => {
+      console.log('success');
       res.json(
         { message: 'Music created!' },
       );
     })
     .catch((error) => {
+      console.log('failure');
       res.status(500).json({ error });
     });
 };
