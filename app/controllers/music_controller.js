@@ -3,14 +3,12 @@ import Music from '../models/music_model';
 // this cleans the musics because we use id instead of dangling _id
 // and we purposefully don't return content here either
 const cleanMusic = (music) => {
-  // return { id: music._id, title: music.title, tiles: music.tiles, tags: music.tags.join(' ') };
-  return { id: music._id, music: music.music };
+  return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo };
 };
 
 const cleanMusics = (musics) => {
   return musics.map((music) => {
-    // return { id: music._id, title: music.title, tiles: music.tiles, tags: music.tags.join(' ') };
-    return { id: music._id, music: music.music };
+    return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo };
   });
 };
 
@@ -43,8 +41,9 @@ export const createMusic = (req, res) => {
     });
 };
 
+// return all the music
+// TODO filter the music
 export const getMusics = (req, res) => {
-  // res.send('musics should be returned');
   Music.find()
     .then((musics) => {
       musics.sort(compare);
