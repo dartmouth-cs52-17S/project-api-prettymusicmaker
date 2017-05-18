@@ -24,12 +24,8 @@ const MusicSchema = new Schema(
     author: String,
     music: [Boolean],
     tempo: Number,
-    // tags: [String],
-  },
-  {
-    timestamps: true,
-  },
 
+  },
 );
 
 // create musicModel class from schema

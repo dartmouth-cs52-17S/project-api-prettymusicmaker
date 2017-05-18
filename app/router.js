@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as Musics from './controllers/music_controller';
 import * as UserController from './controllers/user_controller';
-import { requireSignin } from './services/passport';
+import { requireAuth, requireSignin } from './services/passport';
 
 
 const router = Router();
@@ -10,11 +10,11 @@ router.get('/', (req, res) => {
   res.json({ message: 'welcome to our pretty music maker api!' });
 });
 
-// TODO REQUITE AUTH NEEDS TO BE INTEGRATED
+// TODO REQUIRE AUTH NEEDS TO BE INTEGRATED
 
-// /your routes will go here
+// create and get music
 router.route('/music/')
-  .post(Musics.createMusic)
+  .post(requireAuth, Musics.createMusic)
   .get(Musics.getMusics);
 
 router.route('/music/:id')
