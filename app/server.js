@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 // default index route
 app.get('/', (req, res) => {
-  res.send('hi');
+  res.send('hi there people!');
 });
 
 // REGISTER OUR ROUTES -------------------------------
