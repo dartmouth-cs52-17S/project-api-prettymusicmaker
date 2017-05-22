@@ -74,14 +74,14 @@ export const updateMusic = (req, res) => {
   // res.send('update a music here');
   Music.findOneAndUpdate(
     { _id: req.params.id },
-    {
-      title: req.body.title,
-      author: req.body.author,
-      tempo: req.body.tempo,
-      music: req.body.music,
-
-      // tags: req.body.tags.split(' '),
-    })
+    { $set: req.body },
+    // {
+    //   title: req.body.title,
+    //   author: req.body.author,
+    //   tempo: req.body.tempo,
+    //   music: req.body.music,
+    // },
+  )
     .then(() => {
       res.json(
         { message: 'Music updated!' },
