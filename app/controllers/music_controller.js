@@ -24,13 +24,15 @@ export const createMusic = (req, res) => {
   const music = new Music();
 
   music.title = req.body.title;
-  music.author = req.body.author;
+  music.author = req.user.email;
   music.music = req.body.music;
   music.tempo = req.body.tempo;
 
+  // console.log(req.user);
+
   music.save()
     .then((result) => {
-      console.log('success');
+      // console.log('success');
       res.json(
         { message: 'Music created!' },
       );
@@ -44,7 +46,8 @@ export const createMusic = (req, res) => {
 // return all the music
 // TODO filter the music
 export const getMusics = (req, res) => {
-  Music.find()
+  // console.log(req);
+  Music.find({ author: req.user.email })
     .then((musics) => {
       musics.sort(compare);
 
