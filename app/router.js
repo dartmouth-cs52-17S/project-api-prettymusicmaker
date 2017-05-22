@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // create and get music
 router.route('/music/')
   .post(requireAuth, Musics.createMusic)
-  .get(Musics.getMusics);
+  .get(requireAuth, Musics.getMusics);
 
 router.route('/music/:id')
 .put(Musics.updateMusic)
