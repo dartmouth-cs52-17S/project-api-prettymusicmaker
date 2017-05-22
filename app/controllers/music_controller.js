@@ -75,9 +75,11 @@ export const updateMusic = (req, res) => {
   Music.findOneAndUpdate(
     { _id: req.params.id },
     {
-      // title: req.body.title,
-      // cover_url: req.body.cover_url,
-      tiles: req.body.tiles,
+      title: req.body.title,
+      author: req.body.author,
+      tempo: req.body.tempo,
+      music: req.body.music,
+
       // tags: req.body.tags.split(' '),
     })
     .then(() => {
