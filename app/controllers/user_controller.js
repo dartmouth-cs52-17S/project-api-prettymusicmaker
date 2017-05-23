@@ -7,7 +7,7 @@ dotenv.config({ silent: true });
 // authentication methods
 export const signin = (req, res, next) => {
   console.log(tokenForUser(req.user));
-  res.send({ token: tokenForUser(req.user) });
+  res.send({ token: tokenForUser(req.user), email: req.user.email });
 };
 
 export const signup = (req, res, next) => {
