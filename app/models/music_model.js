@@ -6,7 +6,7 @@ const MusicSchema = new Schema(
   {
     title: String,
     author: String,
-    music: [[], [], [], [], [], [], [], []],
+    music: [[], [], [], [], [], [], [], [], [], [], [], []],
     tempo: Number,
 
   },

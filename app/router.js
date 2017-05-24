@@ -18,9 +18,9 @@ router.route('/music/')
   .get(requireAuth, Musics.getMusics);
 
 router.route('/music/:id')
-.put(Musics.updateMusic)
+.put(requireAuth, Musics.updateMusic)
 .get(Musics.getMusic)
-.delete(Musics.deleteMusic);
+.delete(requireAuth, Musics.deleteMusic);
 
 // signin method
 router.post('/signin', requireSignin, UserController.signin);
