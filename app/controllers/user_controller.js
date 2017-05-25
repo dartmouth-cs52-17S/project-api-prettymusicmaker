@@ -36,7 +36,7 @@ export const signup = (req, res, next) => {
       user.save()
       .then((result) => {
         console.log('token sent');
-        res.send({ token: tokenForUser(user) });
+        res.send({ token: tokenForUser(user), email: user.email });
       })
       .catch((er) => {
         console.log('error saving');
