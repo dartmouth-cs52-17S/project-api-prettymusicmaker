@@ -3,12 +3,12 @@ import Music from '../models/music_model';
 // this cleans the musics because we use id instead of dangling _id
 // and we purposefully don't return content here either
 const cleanMusic = (music) => {
-  return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo };
+  return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo, synth: music.synth };
 };
 
 const cleanMusics = (musics) => {
   return musics.map((music) => {
-    return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo };
+    return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo, synth: music.synth };
   });
 };
 
@@ -27,6 +27,7 @@ export const createMusic = (req, res) => {
   music.author = req.user.email;
   music.music = req.body.music;
   music.tempo = req.body.tempo;
+  music.synth = req.body.synth;
 
   // console.log(req.user);
 
