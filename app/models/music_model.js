@@ -7,8 +7,11 @@ const MusicSchema = new Schema(
     title: String,
     author: String,
     music: [[], [], [], [], [], [], [], [], [], [], [], []],
-    tempo: Number,
-    synth: Number,
+    bass: [],
+    snare: [],
+    hh: [],
+    // tempo: Number,
+    // synth: Number,
 
   },
 );

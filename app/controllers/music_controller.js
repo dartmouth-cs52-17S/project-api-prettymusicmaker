@@ -3,12 +3,12 @@ import Music from '../models/music_model';
 // this cleans the musics because we use id instead of dangling _id
 // and we purposefully don't return content here either
 const cleanMusic = (music) => {
-  return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo, synth: music.synth };
+  return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo, synth: music.synth, bass: music.bass, snare: music.snare, hh: music.hh };
 };
 
 const cleanMusics = (musics) => {
   return musics.map((music) => {
-    return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo, synth: music.synth };
+    return { id: music._id, music: music.music, title: music.title, author: music.author, tempo: music.tempo, synth: music.synth, bass: music.bass, snare: music.snare, hh: music.hh };
   });
 };
 
@@ -26,8 +26,11 @@ export const createMusic = (req, res) => {
   music.title = req.body.title;
   music.author = req.user.email;
   music.music = req.body.music;
-  music.tempo = req.body.tempo;
-  music.synth = req.body.synth;
+  // music.tempo = req.body.tempo;
+  // music.synth = req.body.synth;
+  music.bass = req.body.bass;
+  music.snare = req.body.snare;
+  music.hh = req.body.hh;
 
   // console.log(req.user);
 
@@ -79,12 +82,6 @@ export const updateMusic = (req, res) => {
   Music.findOneAndUpdate(
     { _id: req.params.id },
     { $set: req.body },
-    // {
-    //   title: req.body.title,
-    //   author: req.body.author,
-    //   tempo: req.body.tempo,
-    //   music: req.body.music,
-    // },
   )
     .then(() => {
       res.json(
