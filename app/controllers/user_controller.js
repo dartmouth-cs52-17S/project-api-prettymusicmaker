@@ -1,6 +1,7 @@
 import jwt from 'jwt-simple';
 import dotenv from 'dotenv';
 import User from '../models/user_model';
+import MusicModel from '../models/music_model';
 
 dotenv.config({ silent: true });
 
@@ -42,6 +43,30 @@ export const signup = (req, res, next) => {
         console.log('error saving');
         res.status(500).json({ er });
       });
+
+      const demoMusic = new MusicModel();
+      demoMusic.author = email;
+      demoMusic.title = 'demo song';
+      demoMusic.music = [
+        [false, false, false, false, false, false, true, false, false, false],
+        [false, false, false, false, false, true, false, false, false, false],
+        [false, false, false, false, false, false, true, false, false, false],
+        [false, false, false, false, false, true, false, false, true, false],
+        [false, false, false, false, false, false, false, true, false, false],
+        [false, false, false, false, false, false, true, false, false, true],
+        [false, false, false, true, false, false, true, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false],
+        [false, true, false, false, true, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, true, false],
+        [false, false, false, false, false, false, false, false, true, false],
+        [false, false, false, false, false, false, false, true, false, true],
+      ];
+      demoMusic.tempo = 300;
+      demoMusic.bass = [true, false, true, false, false, true, true, true, false, false, true, false];
+      demoMusic.snare = [false, true, false, false, false, false, false, true, false, true, true, false];
+      demoMusic.hh = [true, true, false, false, true, false, false, false, true, false, false, false];
+
+      demoMusic.save();
     }
     return 0;
   });
