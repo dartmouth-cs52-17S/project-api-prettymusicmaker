@@ -26,8 +26,8 @@ export const createMusic = (req, res) => {
   music.title = req.body.title;
   music.author = req.user.email;
   music.music = req.body.music;
-  // music.tempo = req.body.tempo;
-  // music.synth = req.body.synth;
+  music.tempo = req.body.tempo;
+  music.synth = req.body.synth;
   music.bass = req.body.bass;
   music.snare = req.body.snare;
   music.hh = req.body.hh;
