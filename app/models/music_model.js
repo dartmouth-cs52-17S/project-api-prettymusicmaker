@@ -10,8 +10,8 @@ const MusicSchema = new Schema(
     bass: [],
     snare: [],
     hh: [],
-    // tempo: Number,
-    // synth: Number,
+    tempo: Number,
+    synth: Number,
 
   },
 );
