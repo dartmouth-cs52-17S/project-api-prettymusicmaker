@@ -37,3 +37,14 @@ curl -X GET "http://localhost:9090/api/music/<MUSIC_ID>"
 # delete a specific music with <MUSIC_ID>
 curl -X DELETE -H "Content-Type: application/json" "http://localhost:9090/api/music/<MUSIC_ID>"
 ```
+
+## Authors
+
+SeokJun Bing,
+Ke Deng,
+Van Nguyen,
+Odon Orzsik,
+Dylan Scandinaro
+
+## Acknowledgments
+* This project was inspired by [this app](https://musiclab.chromeexperiments.com/Melody-Maker).
