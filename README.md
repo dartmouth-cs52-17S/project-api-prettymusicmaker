@@ -1,7 +1,35 @@
-# Pretty Music Maker: Backend
+# PrettyMusicMaker: Backend
 
 
-See the [README.md](https://github.com/dartmouth-cs52-17S/project-client-prettymusicmaker/blob/master/README.md) in the [Frontend repo](https://github.com/dartmouth-cs52-17S/project-client-prettymusicmaker)!
+* See the [README.md](https://github.com/dartmouth-cs52-17S/project-client-prettymusicmaker/blob/master/README.md) in the [Frontend repo](https://github.com/dartmouth-cs52-17S/project-client-prettymusicmaker) for more information relating to this project
+
+* Visit [PrettyMusicMaker.io](http://PrettyMusicMaker.io) for some <b>FUN</b>!
+
+## Data Models
+### Music
+Music model schema looks as follows
+```
+{
+  title: String,
+  author: String,
+  music: [[], [], [], [], [], [], [], [], [], [], [], []],
+  bass: [],
+  snare: [],
+  hh: [],
+  tempo: Number,
+  synth: Number,
+}
+```
+### User
+User model schema looks as follows
+```
+{
+  email: { type: String, unique: true, lowercase: true },
+  password: String,
+  username: String,
+}
+```
+
 
 ## AUTH & API endpoints
 
@@ -17,7 +45,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"email": "test@test.com","
 curl -X POST -H "Content-Type: application/json" -d '{"email": "test@test.com","password": "password"}' "http://localhost:9090/api/signin"
 ```
 
-### Making an authenticated request
+### Endpoints that require authentication
 
 Include the user token in your header for every request you make; for instance, to make an authenticated request to music API endpoint, you might do
 
@@ -26,16 +54,19 @@ Include the user token in your header for every request you make; for instance, 
 curl -H "Authorization: <TOKEN>" "http://127.0.0.1:9090/api/music"
 
 # authenticated request to create a new music
-curl -X POST -H "Content-Type: application/json" -H "Authorization: <TOKEN>" -d '{"title": "music1","author": "some Author","music": [[true,true],[false, true]]}' "http://localhost:9090/api/music"
+curl -X POST -H "Content-Type: application/json" -H "Authorization: <TOKEN>" -d '{"title": "music1","author": "some author","music": <10x12 ARRAY OF BOOL>, "bass": <1x12 ARRAY OF BOOL>, "snare": <1x12 ARRAY OF BOOL>, "hh": <1x12 ARRAY OF BOOL>}' "http://localhost:9090/api/music"
+
+# authenticated request to delete a specific music with <MUSIC_ID>
+curl -X DELETE -H "Content-Type: application/json" -H "Authorization: <TOKEN>" "http://localhost:9090/api/music/<MUSIC_ID>"
+
+# authenticated request to update a specific music with <MUSIC_ID>
+curl -X PUT -H "Content-Type: application/json" -H "Authorization: <TOKEN>" -d '{"title": "CHANGE"}' "http://127.0.0.1:9090/api/music/<MUSIC_ID>
 ```
 
-### Endpoints that currently do not require authentication
+### Endpoints that do not require authentication
 ```
 # retrieve a specific music with <MUSIC_ID>
 curl -X GET "http://localhost:9090/api/music/<MUSIC_ID>"
-
-# delete a specific music with <MUSIC_ID>
-curl -X DELETE -H "Content-Type: application/json" "http://localhost:9090/api/music/<MUSIC_ID>"
 ```
 
 ## Authors
