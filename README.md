@@ -43,7 +43,7 @@ curl -X DELETE -H "Content-Type: application/json" "http://localhost:9090/api/mu
 SeokJun Bing,
 Ke Deng,
 Van Nguyen,
-Odon Orzsik,
+Ödön Örzsik,
 Dylan Scandinaro
 
 ## Acknowledgments
